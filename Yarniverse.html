@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yarniverse</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff6ea;--card:#fffdf8;--ink:#46343f;--mut:#7a6670;--pink:#f4b6c2;--pinkd:#d9607b;--lav:#cbb9e8;--sage:#bfd6b4;--sagd:#5d8a63;--org:#f8c59a;--orgd:#c8682a;--ln:#ecd9c8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#2a2026;--card:#3a2d34;--ink:#fbeee2;--mut:#cdb8bf;--ln:#55434d}}
+*{box-sizing:border-box}html{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Nunito,system-ui,sans-serif;min-height:100%}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--pinkd);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 18px 80px}
+.hero{text-align:center;padding:36px 0 18px}
+.hero h1{font-size:clamp(3rem,10vw,5.6rem);font-weight:800;letter-spacing:-.02em;color:var(--pinkd)}
+.hero p{font-size:1.3rem;color:var(--mut);margin:.3rem 0 1.4rem}
+.logo{width:92px;height:92px;animation:sway 5s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(8deg)}}
+.btn{border:0;border-radius:999px;padding:14px 28px;font-weight:800;font-size:1.05rem;background:var(--pinkd);color:#fff;box-shadow:0 6px 0 #a8435c;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #a8435c}
+.btn.alt{background:var(--card);color:var(--ink);box-shadow:0 4px 0 var(--ln);border:2px solid var(--ln);padding:10px 18px}
+.btn.alt:active{box-shadow:0 1px 0 var(--ln)}
+.btn.sm{padding:10px 16px;font-size:.95rem}
+.lvls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:28px 0 8px}
+.lv{background:var(--card);border-radius:18px;padding:10px 16px;min-width:140px;border:2px solid var(--ln);text-align:left}
+.lv b{display:block;font-size:.95rem}.lv small{color:var(--mut)}
+.bar{height:9px;border-radius:9px;background:var(--ln);overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--c);border-radius:9px;transition:width .6s}
+section.lvl{margin-top:44px}
+section.lvl h2{font-size:1.9rem}section.lvl>p{margin:.2rem 0 14px;color:var(--mut)}
+.path{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:22px 18px;padding:8px 0 22px}
+.card{position:relative;text-align:left;border:0;background:var(--card);border-radius:26px;padding:16px 14px 16px;box-shadow:0 8px 0 var(--c),0 14px 24px rgba(90,50,60,.14);transition:transform .25s cubic-bezier(.3,1.5,.5,1),box-shadow .25s}
+.card:nth-child(even){margin-top:20px}
+.card:hover,.card:focus-visible{transform:translateY(-6px) rotate(-1.2deg);box-shadow:0 12px 0 var(--c),0 20px 30px rgba(90,50,60,.2)}
+.card:active{transform:scale(.96)}
+.ic{display:grid;place-items:center;height:92px;border-radius:20px;background:var(--c);color:var(--ink);margin-bottom:10px;position:relative;overflow:hidden}
+.ic svg{width:60px;height:60px;stroke:currentColor;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ic:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(255,255,255,.16) 6px 8px)}
+.card h3{font-size:1.05rem}.card small{color:var(--mut);display:block}
+.n{position:absolute;top:-9px;left:-6px;background:var(--ink);color:var(--bg);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.85rem}
+.st{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:800;border-radius:999px;padding:2px 10px;background:var(--ln)}
+.st.done{background:var(--sagd);color:#fff}.st.next{background:var(--orgd);color:#fff;animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.07)}}
+#fly{position:fixed;z-index:50;border-radius:26px;pointer-events:none;transition:all .55s cubic-bezier(.7,0,.2,1);display:grid;place-items:center}
+#fly svg{width:90px;height:90px;stroke:var(--ink);stroke-width:3;fill:none;transition:opacity .3s}
+.lesson{animation:in .5s both}@keyframes in{from{opacity:0;transform:scale(.96)}}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.lesson h1{font-size:clamp(2rem,6vw,3rem)}
+.pill{display:inline-block;border-radius:999px;padding:3px 14px;font-weight:800;font-size:.85rem;background:var(--c);color:#46343f}
+.box{background:var(--card);border-radius:24px;padding:20px 22px;margin:18px 0;border:2px solid var(--ln)}
+.box h2{font-size:1.4rem;margin-bottom:8px}
+.goal{background:var(--c);color:#46343f;border:0;font-size:1.15rem}
+ol.steps{padding:0;margin:0;list-style:none;counter-reset:s}
+ol.steps li{counter-increment:s;padding:8px 0 8px 46px;position:relative}
+ol.steps li:before{content:counter(s);position:absolute;left:0;top:7px;width:32px;height:32px;border-radius:50%;background:var(--pinkd);color:#fff;font-weight:800;display:grid;place-items:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}@media(max-width:700px){.two{grid-template-columns:1fr}}
+.fix{padding:8px 0;border-top:1px dashed var(--ln)}.fix b{color:var(--pinkd)}
+.diag{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.diag .ic{width:120px;height:120px}.diag .ic svg{width:84px;height:84px}
+.demo{background:linear-gradient(#fff9f0,#fde9dd);border-radius:24px;border:2px solid var(--ln);overflow:hidden;color:#46343f}
+.stage{position:relative;aspect-ratio:16/10;touch-action:pan-y}
+.stage canvas{width:100%;height:100%;display:block}
+.lbl{position:absolute;transform:translate(-50%,-130%);background:#fff;border:2px solid var(--c);border-radius:10px;padding:1px 9px;font-size:.8rem;font-weight:800;pointer-events:none;white-space:nowrap;transition:opacity .3s}
+.cap{padding:12px 18px;background:#fff;font-weight:600;min-height:72px;border-top:2px solid var(--ln)}
+.cap small{display:block;color:#7a6670;font-weight:800}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 14px;background:#fff6ea}
+.ctl select{font:inherit;padding:8px;border-radius:12px;border:2px solid var(--ln);background:#fff;color:#46343f}
+.dots{display:flex;gap:5px;padding:0 18px 12px;background:#fff}.dots i{flex:1;height:6px;border-radius:6px;background:var(--ln)}.dots i.on{background:var(--pinkd)}
+.note{font-size:.88rem;color:#7a6670;padding:0 18px 12px;background:#fff}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:999px;font-weight:800;z-index:60;animation:in .3s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div class="wrap" id="app"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const LV={Beginner:{c:"#f4b6c2",d:"Learn every basic skill, one gentle step at a time."},"Easy Projects":{c:"#bfd6b4",d:"Make real things with only the basics."},Intermediate:{c:"#cbb9e8",d:"Patterns, texture and shaping."},Advanced:{c:"#f8c59a",d:"Amigurumi, colour, lace and polish."}};
+const IC={hook:'<path d="M14 50L46 18"/><path d="M46 18c4-4 9 0 6 4"/><circle cx="14" cy="50" r="3"/>',ball:'<circle cx="32" cy="32" r="18"/><path d="M16 26c10 6 22 6 32 0M15 36c11 6 23 6 34 0M24 16c4 12 4 20 0 32"/>',chain:'<ellipse cx="14" cy="32" rx="9" ry="6"/><ellipse cx="32" cy="32" rx="9" ry="6"/><ellipse cx="50" cy="32" rx="9" ry="6"/>',sc:'<path d="M32 12v40M16 32h32"/>',hdc:'<path d="M32 12v40M20 12h24M22 28h20"/>',dc:'<path d="M32 12v40M20 12h24M23 30l18-8"/>',ss:'<circle cx="32" cy="32" r="6" fill="currentColor"/>',loop:'<path d="M10 48c8-34 36-34 44 0M22 38h20"/>',ring:'<circle cx="32" cy="32" r="18"/><circle cx="32" cy="32" r="7"/>',rows:'<path d="M10 20h44M10 32h44M10 44h44"/>',inc:'<path d="M32 52V32M32 32L18 12M32 32l14-20"/>',dec:'<path d="M18 52l14-20M46 52L32 32M32 32V12"/>',sq:'<rect x="12" y="12" width="40" height="40" rx="4"/><rect x="23" y="23" width="18" height="18"/>',bump:'<circle cx="20" cy="36" r="8"/><circle cx="44" cy="36" r="8"/><circle cx="32" cy="24" r="8"/>',shell:'<path d="M12 50c0-24 40-24 40 0M32 50V28M22 50l-4-16M42 50l4-16"/>'};
+const svg=k=>`<svg viewBox="0 0 64 64">${IC[k]||IC.ball}</svg>`;
+const L=(lvl,id,t,ic,ab,goal,tools,steps,tips,mist,prac,demo)=>({lvl,id,t,ic,ab,goal,tools,steps,tips,mist,prac,demo});
+const T5=["5 mm (US H-8) hook","Light worsted yarn","Scissors"];
+const LS=[
+L("Beginner","tools","Crochet tools and yarn","hook","hook","choose a hook and yarn that work well together and name the parts of your hook.",["A hook, 4–5 mm","Worsted-weight (medium, 4) yarn, light colour","Scissors and a blunt yarn needle"],["Pick smooth, light-coloured worsted yarn. Dark or fuzzy yarn hides your stitches.","Read the yarn label. It suggests a hook size. Start with 5 mm.","Find the parts of the hook: tip, throat, shaft, thumb rest and handle.","Keep scissors and a yarn needle nearby."],["Aluminium hooks glide fast; bamboo hooks grip the yarn.","Cotton yarn is lovely for dishcloths and coasters."],[["Yarn splits and snags","Switch to smooth, firmly twisted yarn."]],"Hold your hook and point to the tip, throat and thumb rest.","parts"),
+L("Beginner","hold","Holding hook and yarn","hook","—","hold your hook comfortably and keep steady tension on the yarn.",T5,["Hold the hook like a pencil (pencil grip) or like a knife (knife grip). Use whichever feels relaxed.","Rest your thumb on the thumb rest and keep the throat facing you.","With your other hand, weave the yarn over your index finger and under your middle fingers.","Use your thumb and middle finger to pinch the work and steady it, and lift your index finger slightly to tighten."],["Keep your shoulders low. Tight shoulders make tight stitches.","Wrap the yarn around your little finger for more tension."],[["Stitches are too tight","Loosen your grip and let yarn slide between fingers."],["Hook keeps rotating","Keep the throat facing you or slightly down."]],"Hold the hook and yarn for one minute, relaxed, without making anything.","hold"),
+L("Beginner","slip","Slip knot","loop","sl knot","tie the first loop that holds your yarn on the hook.",T5,["Leave a 15 cm (6 in) tail and make a loop by crossing the tail over the working yarn.","Reach through the loop with the hook and grab the working yarn.","Pull a new loop up through the first loop.","Tighten by pulling the tail while the loop stays on the hook.","Pull the working yarn to snug it. The loop should slide easily on the hook."],["Slip knots should slide, not be stuck."],[["The knot will not slide","Undo and redo, pulling the working yarn, not the tail."]],"Make three slip knots in a row.","slip"),
+L("Beginner","chain","Chain stitch","chain","ch","make a neat, even chain.",T5,["Start with a slip knot on the hook.","Yarn over: bring the yarn over the hook from back to front.","Pull the hook (with the yarn caught in the throat) through the loop on the hook.","You made 1 chain. Keep 1 loop on the hook.","Repeat to make more chains."],["Hold the base of the chain with your pinching fingers as it grows.","Each chain looks like a small V."],[["Chains are different sizes","Slow down and keep the same tension."],["Chain twisted","Straighten it before you start the next row."]],"Chain 15 and keep the chains even.","ch"),
+L("Beginner","found","Foundation chain","chain","ch","make a starting chain with the right number of stitches and find the first stitch.",T5,["Make a slip knot and chain the number your pattern asks for.","Do not count the loop on your hook.","Count the V shapes along the front of the chain.","Add the turning chain for your stitch (sc: 1, hdc: 2, dc: 3 – see the rows lesson)."],["Count twice. It is much easier than unpicking later.","Start with a looser chain than you think."],[["Edge curls or pinches","Use a hook one size bigger for the foundation chain."]],"Chain 12 and count the Vs.","found"),
+L("Beginner","ring","Magic ring","ring","MR","start any round-shaped project with an adjustable ring.",T5,["Wrap yarn around two fingers to make a loop, with the tail on the left.","Insert the hook into the loop and pull up the working yarn.","Chain 1 to lock the ring.","Work your stitches into the ring over both the ring and the tail.","Pull the tail to close the centre tight."],["Practice with chunky yarn first.","Weave the tail in after closing."],[["Ring is loose","Pull the tail harder and wiggle the loop closed."]],"Make a magic ring and work 6 single crochet into it.","ring"),
+L("Beginner","sc","Single crochet (sc)","sc","sc","make the single crochet, the shortest and most-used stitch.",T5,["Start with a foundation chain. Skip the first chain (it is the turning chain).","Insert the hook into the 2nd chain from the hook, under both top strands (look for the glowing marker in the demo).","Yarn over and pull up a loop. There are 2 loops on the hook.","Yarn over again and pull through both loops.","1 sc made! Insert the hook into the next chain and repeat."],["The stitch looks like an X from the front.","Insert the hook under both loops of the V."],[["Loops stay on the hook","Yarn over, then pull through both loops."],["Stitch count grows","Count stitches at the end of each row."]],"Work sc along 12 chains.","sc"),
+L("Beginner","hdc","Half double crochet (hdc)","hdc","hdc","make the stitch that is a little taller than sc.",T5,["Yarn over first.","Insert the hook into the stitch.","Yarn over and pull up a loop. There are 3 loops on the hook.","Yarn over and pull through all 3 loops.","1 hdc made."],["Think: yarn over before, pull through all three."],[["Stitch is too short","Yarn over before inserting the hook."]],"Work 10 hdc in a row.","hdc"),
+L("Beginner","dc","Double crochet (dc)","dc","dc","make the tall double crochet stitch.",T5,["Yarn over, then insert the hook in the stitch.","Yarn over and pull up a loop (3 loops on hook).","Yarn over and pull through 2 loops (2 loops left).","Yarn over and pull through the last 2 loops.","1 dc made."],["Work in pairs: 'pull through 2, pull through 2'."],[["Loops get lost","Count loops after each pull-through."]],"Make 10 dc in a row.","dc"),
+L("Beginner","ss","Slip stitch (sl st)","ss","sl st","join the end of a round and move across stitches without adding height.",T5,["Insert the hook into the stitch.","Yarn over.","Pull the yarn through the stitch and through the loop on the hook at once.","1 sl st made."],["Slip stitches are tiny and flat."],[["Join looks bulky","Keep your slip stitches loose."]],"Make 8 sl st along a chain.","ss"),
+L("Beginner","rows","Turning chains and rows","rows","tch","finish a row and turn neatly without changing the edge.",T5,["At the end of the row, chain the turning chain (sc: 1, hdc: 2, dc: 3).","Turn the work so the stitches you just made face away from you.","Work into the top of the first stitch (sc/hdc: skip the turning chain; dc: use the turning chain as a stitch).","Count your stitches at the end of every row."],["Turn the work the same direction every time."],[["Edges slope inward","Work the last stitch of the row into the top of the turning chain."]],"Make 4 rows of 10 sc.","rows"),
+L("Beginner","round","Working in the round","ring","rnd","make flat circles without turning.",T5,["Make a magic ring and sc 6.","Close the round with a slip stitch in the first stitch.","Chain 1 (this does not count).","Work 2 sc in each stitch around (12 sc).","Use a stitch marker in the first stitch of each round."],["Count the stitches in each round.","A circle grows by 6 each round."],[["Circle ruffles","Add fewer increases."],["Circle cups","Add more increases."]],"Make a flat circle with 3 rounds.","round"),
+L("Beginner","incdec","Increasing and decreasing","inc","inc/dec","add or remove stitches to shape your work.",T5,["Increase (inc): work 2 stitches in the same stitch.","Decrease (dec, invisible dec): insert hook in first stitch, yarn over, pull up a loop.","Insert in next stitch, yarn over, pull up a loop (3 loops).","Yarn over and pull through all 3 loops."],["Decreases use two stitches to make one.","Keep stitches count in mind: 6 + 6 = 12."],[["Holes next to decrease","Insert hook into the front loops only."]],"Make a 10-stitch row, then inc at both ends, then dec at both ends.","inc"),
+L("Beginner","change","Changing yarn and weaving in ends","ball","—","change colours and hide the ends neatly.",["Two yarn colours","Yarn needle","Scissors"],["On the last stitch of a colour, stop with 2 loops on the hook.","Drop the old colour and yarn over with the new colour.","Pull through both loops. The new colour starts here.","Leave a 15 cm (6 in) tail when finished.","Thread the tail on a yarn needle and weave it back and forth through the stitches for 5 cm."],["Weave tails along the same colour."],[["Ends keep poking out","Weave in two directions."]],"Change colour after 4 rows and weave in the ends.","change"),
+L("Easy Projects","dish","Cotton dishcloth","sq","sc","make a flat square with single crochet.",["Cotton yarn","5 mm hook"],["Chain 25.","Work 1 sc in each chain across.","Chain 1 and turn.","Sc in each stitch across. Repeat for 25 rows."],["Use cotton so it can be washed."],[["Edges wavy","Count your stitches each row."]],"Finish one 20 cm square.","sc"),
+L("Easy Projects","coaster","Round coaster","ring","sc","combine the round and increases.",["Cotton yarn","4 mm hook"],["Magic ring, 6 sc.","Round 2: 2 sc in each stitch (12).","Round 3: *sc, inc* around (18).","Round 4: *sc 2, inc* around (24)."],["Use a marker."],[["Coaster cups","Add more increases."]],"Finish one coaster.","round"),
+L("Easy Projects","scarf","Chunky scarf","rows","hdc","practice rows and turning chains.",["Chunky yarn","8 mm hook"],["Chain 20.","Row 1: hdc in 3rd chain from hook and each across.","Chain 2 and turn.","Repeat until 150 cm long."],["Count stitches every 5 rows."],[["Scarf gets narrower","Work into the turning chain."]],"Make the first 20 cm.","hdc"),
+L("Easy Projects","headband","Ribbed headband","dc","dc","make a simple wearable.",["Soft yarn","5 mm hook"],["Chain 12.","dc in 4th chain from hook and each across.","Work rows until it fits around your head.","Join the ends with slip stitches."],["Measure around your head."],[["Too tight","Work looser or add chains."]],"Make 10 rows.","dc"),
+L("Intermediate","granny","Granny square","sq","dc","make a classic motif from chain spaces and double crochet clusters.",T5,["Magic ring, ch 3 (counts as dc), 2 dc, ch 2.","*3 dc, ch 2* three times; join to the 3rd chain.","Round 2: slip stitch to corner, ch 3, 2 dc, ch 2, 3 dc in the corner space.","Between corners work 3 dc in the gap."],["Count clusters on each side."],[["Square looks twisted","Turn the work every round."]],"Make a 3-round square.","dc"),
+L("Intermediate","pattern","Reading patterns","rows","—","understand abbreviations, repeats and counts.",["A beginner pattern"],["Read the abbreviation list first.","Parentheses (…) mean work together; asterisks *…* mean repeat.","Numbers in brackets at the end are stitch counts.","Check your gauge swatch."],["Highlight each row as you finish."],[["Counts don't match","Recount the row before."]],"Read a simple pattern aloud.","sc"),
+L("Intermediate","texture","Texture stitches","bump","puff","make puff stitches, bobbles and the waffle stitch.",T5,["Puff: yarn over, pull up a long loop 3 times in one stitch.","Yarn over and pull through all loops.","Bobble: work several unfinished dc in one stitch and close.","Alternate texture with flat rows."],["Use soft yarn for puffs."],[["Puffs look flat","Pull each loop up high."]],"Make a 3-puff row.","dc"),
+L("Intermediate","shell","Shells and fans","shell","shell","make the shell stitch, a decorative group in one stitch.",T5,["Skip 2 stitches.","Work 5 dc into the next stitch.","Skip 2 stitches and sl st or sc into the next.","Repeat."],["Count to 5 dc in the same stitch."],[["Shells are lopsided","Skip the same number of stitches each side."]],"Make a row of 4 shells.","dc"),
+L("Intermediate","shape","Shaping garments","dec","dec","use increases and decreases to shape curves and edges.",T5,["Mark increase points with a stitch marker.","Increase every 2nd row for a wider piece.","Decrease evenly across the row for narrower areas.","Check your measurement often."],["Use sc2tog for a smooth decrease."],[["Holes at decreases","Use invisible decreases."]],"Make a trapezoid shape.","inc"),
+L("Advanced","ami","Amigurumi basics","ring","sc","crochet small stuffed toys in spirals.",["Cotton yarn","3 mm hook","Stuffing","Safety eyes"],["Make a magic ring, 6 sc.","Increase to 36 sc in rounds.","Work even rounds, decrease to close.","Stuff before closing."],["Use a smaller hook for tight stitches."],[["Stuffing shows","Use a smaller hook."]],"Make a small sphere.","round"),
+L("Advanced","color","Colourwork","ball","tapestry","carry colours along and make pictures.",["2–3 colours"],["Read the colour chart from the right on row 1.","Carry the unused yarn under stitches.","Change colour on the last pull-through.","Keep carried yarn loose."],["Keep carried strands on the back."],[["Fabric puckers","Loosen the carried yarn."]],"Make a striped swatch.","change"),
+L("Advanced","lace","Lace and filet","chain","lace","make airy fabric with chain spaces.",T5,["Alternate dc and chain spaces.","Fill spaces with dc to make solid blocks.","Follow the chart: empty box = open mesh, filled box = block."],["Use a thin thread for a delicate look."],[["Mesh uneven","Keep chain spaces the same."]],"Make a lace row.","dc"),
+L("Advanced","join","Joining motifs","sq","sl st","join motifs seamlessly.",T5,["Lay motifs side by side with right sides up.","Use slip stitch in back loops or whip stitch to join.","Join in the same direction."],["Use the same yarn."],[["Visible seam","Use the invisible join."]],"Join two squares.","ss"),
+L("Advanced","finish","Finishing and blocking","ball","—","give projects a smooth, professional finish.",["Pins","Blocking mat"],["Weave in ends.","Wet-block: soak, press out water, and shape.","Pin to size and dry flat.","Add borders or edging."],["Test a swatch first."],[["Yarn melts","Do not steam acrylic."]],"Block a swatch.","change")
+];
+const KEY="yarniverse-v1";let P={done:{},last:null};
+try{P=Object.assign(P,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}};
+const $=s=>document.querySelector(s),app=$("#app");
+const nextL=()=>LS.find(l=>!P.done[l.id])||LS[0];
+const prog=lv=>{const a=LS.filter(l=>l.lvl==lv);return[a.filter(l=>P.done[l.id]).length,a.length]};
+
+/* ---------- Demos: keyframe lists ---------- */
+const cx=i=>-2.8+i*.8;
+const F=(c,hx,hy,a,o)=>Object.assign({c,hx,hy,a,l:1,yo:0,ch:6,st:0,h:.5,m:null,ring:0,rr:1},o);
+const HH={sc:.5,hdc:.8,dc:1.1,ss:.1};
+function stitch(k,n,ch){const H=HH[k],o=[];
+ o.push(F("Start with a foundation chain. The hook holds one working loop.",cx(0),H+.5,.5,{h:H,ch}));
+ for(let s=0;s<n;s++){const x=cx(s),mx=cx(s+1),y=H+.5,b={h:H,ch,st:s},m=[mx,.05],e=1.1;
+  const pre=k=="hdc"||k=="dc";
+  if(pre)o.push(F("Yarn over: wrap the yarn over the hook from back to front.",x,y,.5,{...b,yo:1}));
+  o.push(F("Insert the hook where the marker glows, under both top strands of the chain.",mx,.35,e,{...b,m,l:pre?1:1,yo:pre?1:0}));
+  o.push(F("Yarn over: catch the yarn in the hook’s throat.",mx,.35,e,{...b,m,yo:1,l:pre?2:1}));
+  const L1=k=="ss"?1:pre?3:2;
+  o.push(F(k=="ss"?"Pull the yarn through the stitch and the loop on the hook in one move.":`Pull the yarn through the chain. Now there are ${L1} loops on the hook.`,mx,.6,.6,{...b,l:k=="ss"?1:L1,m:null,st:k=="ss"?s+1:s}));
+  if(k=="sc")o.push(F("Yarn over again.",mx,.7,.5,{...b,l:2,yo:1}),F("Pull through both loops. One single crochet is done!",mx,.7,.5,{...b,st:s+1}));
+  if(k=="hdc")o.push(F("Yarn over again.",mx,.7,.5,{...b,l:3,yo:1}),F("Pull through all 3 loops. One half double crochet is done!",mx,.9,.5,{...b,st:s+1}));
+  if(k=="dc")o.push(F("Yarn over, then pull through 2 loops. 2 loops remain.",mx,.9,.5,{...b,l:2,yo:1}),F("Yarn over and pull through the last 2 loops. One double crochet is done!",mx,1.15,.5,{...b,st:s+1}));
+ }return o}
+function chn(n,tot,fin){const o=[F("Start with a slip knot: 1 loop on the hook.",cx(0),.6,.5,{ch:0})];
+ for(let i=0;i<n;i++){o.push(F("Yarn over: bring the yarn over the hook from back to front.",cx(0),.6,.5,{ch:i,yo:1}));o.push(F(`Pull through the loop on the hook. Chain ${i+1}!`,cx(0)-.1,.6,.6,{ch:i+1}))}
+ if(fin)o.push(F("Skip the loop on the hook when counting. Your first stitch goes in the 2nd chain from the hook (glowing).",cx(0),.9,.9,{ch:n,m:[cx(2),.05]}));return o}
+const ringF=(c,hx,hy,a,o)=>F(c,hx,hy,a,Object.assign({ring:1,ch:0},o));
+const D={
+parts:()=>[F("This is your hook. The pointed tip slides into stitches.",0,.9,.45,{ch:0,l:0}),F("The throat is the notch behind the tip. It grabs the yarn to pull it through.",.2,1,.8,{ch:0,l:0,yo:1}),F("The shaft holds your working loop. Always keep 1 loop here.",0,.9,.45,{ch:0}),F("The thumb rest is where you hold the hook.",0,.9,.3,{ch:0})],
+hold:()=>[F("Hold the hook with a pencil grip or a knife grip.",cx(1),.8,.5,{ch:0}),F("The yarn runs over your index finger and under your other fingers.",cx(1),.8,.5,{ch:0,yo:1}),F("Pinch the knot or chain with your thumb and middle finger.",cx(0),.6,.5,{ch:3}),F("Lift your index finger a bit to tighten the tension.",cx(0),.6,.7,{ch:3,yo:1})],
+slip:()=>[F("Make a loop by crossing the tail over the working yarn.",cx(0),.9,.8,{ch:0,l:0,ring:1,rr:.9}),F("Insert the hook through the loop.",cx(0),.3,1,{ch:0,l:0,m:[0,.3],ring:1,rr:.9}),F("Yarn over and pull a loop through the first loop.",cx(0),.6,.6,{ch:0,yo:1,ring:1,rr:.9}),F("Pull the tail to tighten the knot. Pull the working yarn to adjust.",cx(0),.6,.5,{ch:0,ring:1,rr:.2})],
+ch:()=>chn(5),found:()=>chn(6,6,1),
+sc:()=>stitch("sc",3,7),hdc:()=>stitch("hdc",2,7),dc:()=>stitch("dc",2,7),ss:()=>stitch("ss",3,7),
+ring:()=>[ringF("Wrap the yarn around two fingers to make a loop.",-2,.8,.7,{l:0,rr:1}),ringF("Insert the hook into the loop. The marker shows where.",0,.4,1,{l:0,rr:1,m:[0,.3]}),ringF("Yarn over and pull up a loop.",0,.5,.6,{rr:1}),ringF("Chain 1 to lock the ring.",0,.7,.5,{rr:1,yo:1}),ringF("Work 3 sc into the ring: hook goes in the centre each time.",0,.4,1,{rr:1,m:[0,.3],st:2}),ringF("Work 6 sc in total.",0,.5,.7,{rr:1,st:6}),ringF("Pull the tail to close the ring tight.",0,.5,.7,{rr:.35,st:6})],
+rows:()=>[F("A row of sc is finished. The hook is at the end.",cx(6),.9,.5,{st:6,ch:7}),F("Chain 1 for the turning chain.",cx(6),.9,.5,{st:6,ch:7,yo:1}),F("Turn your work. The hook now goes to the first stitch.",cx(5),.9,.6,{st:6,ch:7,m:[cx(5),.5]}),F("Work into the top of the first stitch and continue.",cx(5),.7,.9,{st:6,ch:7})],
+round:()=>[ringF("Start with 6 sc in a magic ring.",0,.5,.5,{rr:.5,st:6}),ringF("Close the round with a slip stitch in the first stitch.",.5,.8,.8,{rr:.5,st:6,m:[.5,.3]}),ringF("Round 2: work 2 sc in every stitch.",.5,.8,.8,{rr:.5,st:9}),ringF("12 stitches around. The circle grows by 6 each round.",.5,.8,.5,{rr:.5,st:12})],
+inc:()=>[F("A row of sc is made. Increase: work 2 sc in the same stitch.",cx(2),.9,.5,{st:2,ch:7,m:[cx(3),.05]}),F("First sc into the glowing stitch.",cx(3),.4,1,{st:3,ch:7,m:[cx(3),.05]}),F("Second sc into the same stitch. 1 stitch became 2.",cx(3),.4,1,{st:4,ch:7,m:[cx(3),.05]}),F("Decrease: pull up a loop in the next stitch, then the next, then pull through all.",cx(5),.7,.7,{st:4,ch:7,l:3,m:[cx(5),.05]})],
+change:()=>[F("Finish the last stitch of the old colour, leaving 2 loops on the hook.",cx(3),.8,.5,{st:3,ch:7,l:2}),F("Pull the new colour through both loops.",cx(3),.8,.7,{st:3,ch:7,l:1,yo:1}),F("Leave a 15 cm tail. Thread it on a needle and weave it in.",cx(5),1.2,.8,{st:3,ch:7,m:[cx(5),.05]})]
+};
+
+/* ---------- Three.js demo ---------- */
+function startDemo(root,key){
+ const frames=D[key]();let idx=0,t=1,playing=false,speed=1,hold=0,alive=true,drag=0;
+ const cv=root.querySelector("canvas"),stage=root.querySelector(".stage");
+ const R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+ const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(38,1.6,.1,50);C.position.set(0,1.4,8.4);C.lookAt(0,.7,0);
+ S.add(new THREE.AmbientLight(0xffffff,.8));const dl=new THREE.DirectionalLight(0xffffff,.8);dl.position.set(3,5,6);S.add(dl);
+ const G=new THREE.Group();S.add(G);const M=c=>new THREE.MeshStandardMaterial({color:c,roughness:.65});
+ const yM=M(0xe9788f),hM=M(0xf4a66a),kM=M(0x8fb39a);
+ const mesh=(g,m,p)=>{const x=new THREE.Mesh(g,m);p&&G.add(x);return x};
+ const tor=[...Array(14)].map((_,i)=>{const m=mesh(new THREE.TorusGeometry(.3,.09,10,24),yM,1);m.rotation.y=i%2?1.2:0;return m});
+ const posts=[...Array(14)].map(()=>mesh(new THREE.CylinderGeometry(.16,.16,1,12),yM,1));
+ const ring=mesh(new THREE.TorusGeometry(1,.09,10,48),yM,1);ring.position.set(0,.3,0);
+ const HK=new THREE.Group();G.add(HK);
+ const sh=new THREE.Mesh(new THREE.CylinderGeometry(.07,.07,3.2,12).rotateZ(Math.PI/2).translate(1.7,0,0),hM),hd=new THREE.Mesh(new THREE.SphereGeometry(.09,12,12),hM),bn=new THREE.Mesh(new THREE.TorusGeometry(.11,.04,8,12,Math.PI*1.2),hM),hn=new THREE.Mesh(new THREE.CylinderGeometry(.19,.19,1.3,14).rotateZ(Math.PI/2).translate(4.3,0,0),kM);
+ bn.position.set(.1,.1,0);bn.rotation.z=-.4;HK.add(sh,hd,bn,hn);
+ const hl=[0,1,2].map(i=>{const m=new THREE.Mesh(new THREE.TorusGeometry(.15,.05,8,16).rotateY(Math.PI/2),yM);m.position.x=.4+.25*i;HK.add(m);return m});
+ const yo=new THREE.Mesh(new THREE.TorusGeometry(.17,.05,8,16).rotateY(Math.PI/2),yM);yo.position.x=.1;HK.add(yo);
+ const B=new THREE.Vector3(3.9,2.6,-.5);const ball=mesh(new THREE.SphereGeometry(.6,20,20),yM,1);ball.position.copy(B);
+ const mk=mesh(new THREE.SphereGeometry(.2,16,16),new THREE.MeshBasicMaterial({color:0xffc533,transparent:true,opacity:.85}),1);
+ const yarn=new THREE.Mesh(new THREE.BufferGeometry(),yM);G.add(yarn);
+ const lb={};root.querySelectorAll(".lbl").forEach(e=>lb[e.dataset.k]=e);
+ const P3=(v,e)=>{const p=v.clone().project(C);e.style.left=(p.x*.5+.5)*stage.clientWidth+"px";e.style.top=(-p.y*.5+.5)*stage.clientHeight+"px"};
+ const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2,lr=(a,b,e)=>a+(b-a)*e;
+ function ui(){const f=frames[idx];root.querySelector(".cap").innerHTML=`<small>Step ${idx+1} of ${frames.length}</small>${f.c}`;
+  root.querySelectorAll(".dots i").forEach((d,i)=>d.classList.toggle("on",i<=idx));
+  root.querySelector(".pp").textContent=playing?"⏸ Pause":"▶ Play"}
+ function draw(){const cur=frames[idx],prev=frames[Math.max(idx-1,0)],e=ease(Math.min(t,1)),d=e>.6?cur:prev;
+  const hx=lr(prev.hx,cur.hx,e),hy=lr(prev.hy,cur.hy,e),a=lr(prev.a,cur.a,e),rr=lr(prev.rr,cur.rr,e);
+  HK.position.set(hx,hy,0);HK.rotation.z=a;hl.forEach((m,i)=>m.visible=i<d.l);yo.visible=!!d.yo;
+  tor.forEach((m,i)=>{m.visible=!d.ring&&i<d.ch;m.position.set(cx(i+1),0,0)});
+  ring.visible=!!d.ring&&rr>.1;ring.scale.setScalar(Math.max(rr,.01));
+  posts.forEach((m,i)=>{const on=i<d.st;m.visible=on;if(!on)return;
+   if(d.ring){const an=i*Math.PI/3,r=rr+.3+(i>=6?.55:0);m.scale.set(1,.7,1);m.position.set(Math.cos(an)*r,.3+Math.sin(an)*r,0);m.rotation.z=an-Math.PI/2}
+   else{m.rotation.z=0;m.scale.set(1,d.h,1);m.position.set(cx(i+1),d.h/2,0)}});
+  mk.visible=!!d.m;if(d.m){mk.position.set(d.m[0],d.m[1],.1);mk.scale.setScalar(1+.25*Math.sin(performance.now()/180))}
+  const tip=new THREE.Vector3(hx+.15,hy+.2,0),pts=[B,new THREE.Vector3(2.6,2.2,.6),new THREE.Vector3(lr(tip.x,B.x,.3),tip.y+.5,.4),tip];
+  yarn.geometry.dispose();yarn.geometry=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),28,.06,6);
+  lb.hook.style.opacity=1;P3(new THREE.Vector3(hx+2.8*Math.cos(a),hy+2.8*Math.sin(a)+.1,0),lb.hook);
+  P3(new THREE.Vector3(hx+.5*Math.cos(a),hy+.5*Math.sin(a),0),lb.loop);lb.loop.style.opacity=d.l?1:0;
+  P3(new THREE.Vector3(3.1,2.6,0),lb.yarn);
+  lb.enter.style.opacity=d.m?1:0;if(d.m)P3(new THREE.Vector3(d.m[0],d.m[1]+.3,0),lb.enter)}
+ let last=performance.now();
+ function loop(now){if(!alive||!cv.isConnected){R.dispose();return}requestAnimationFrame(loop);
+  const dt=Math.min((now-last)/1000,.1);last=now;
+  const w=stage.clientWidth,h=stage.clientHeight;if(cv.width!=Math.round(w*R.getPixelRatio())){R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix()}
+  if(playing){if(t<1)t+=dt*speed/2.6;else{hold+=dt*speed;if(hold>.9){hold=0;if(idx<frames.length-1){idx++;t=0;ui()}else{playing=false;ui()}}}}
+  G.rotation.y=Math.sin(now/2500)*.08+drag;draw();R.render(S,C)}
+ requestAnimationFrame(loop);
+ const go=(i,tt)=>{idx=Math.max(0,Math.min(frames.length-1,i));t=tt;hold=0;ui()};
+ const q=s=>root.querySelector(s);
+ q(".pp").onclick=()=>{if(!playing&&idx==frames.length-1&&t>=1)go(0,0);playing=!playing;ui()};
+ q(".rp").onclick=()=>{go(0,0);playing=true;ui()};
+ q(".pv").onclick=()=>{playing=false;go(idx-1,1)};
+ q(".nx").onclick=()=>{playing=false;if(t<1)t=1;else go(idx+1,0);ui()};
+ q(".sp").onchange=e=>speed=+e.target.value;
+ let px=null;stage.onpointerdown=e=>px=e.clientX;stage.onpointermove=e=>{if(px!=null){drag=Math.max(-.6,Math.min(.6,drag+(e.clientX-px)*.005));px=e.clientX}};stage.onpointerup=stage.onpointerleave=()=>px=null;
+ ui();return()=>{alive=false}}
+
+/* ---------- Views ---------- */
+let stop=null;
+const col=l=>LV[l].c;
+function home(){stop&&stop();stop=null;window.scrollTo(0,0);
+ const nx=nextL(),any=Object.keys(P.done).length;
+ let h=`<div class="hero"><svg class="logo" viewBox="0 0 64 64" style="stroke:var(--pinkd);stroke-width:3;fill:none;stroke-linecap:round"><circle cx="30" cy="34" r="20" fill="#f4b6c2"/>${IC.ball.replace('<circle cx="32" cy="32" r="18"/>','')}<path d="M44 16l14-12" stroke="var(--orgd)" stroke-width="4"/></svg><h1>Yarniverse</h1><p>One loop at a time.</p><button class="btn" id="cont">${any?"Continue learning":"Start learning"}: ${nx.t}</button>
+ <div class="lvls">${Object.keys(LV).map(l=>{const[a,b]=prog(l);return`<div class="lv" style="--c:${LV[l].c}"><b>${l}</b><small>${a} of ${b} learned</small><div class="bar"><i style="width:${a/b*100}%"></i></div></div>`}).join("")}</div></div>`;
+ let n=0;for(const l in LV){h+=`<section class="lvl"><h2>${l}</h2><p>${LV[l].d}</p><div class="path">`;
+  LS.filter(x=>x.lvl==l).forEach(x=>{n++;const dn=P.done[x.id],nxt=x.id==nx.id&&!dn;
+   h+=`<button class="card" data-id="${x.id}" style="--c:${col(l)}"><span class="n">${n}</span><div class="ic">${svg(x.ic)}</div><h3>${x.t}</h3><small>${l}</small><span class="st ${dn?"done":nxt?"next":""}">${dn?"✓ Learned":nxt?"Up next":"Not started"}</span></button>`});
+  h+=`</div></section>`}
+ app.innerHTML=h;
+ $("#cont").onclick=()=>open(nx.id);
+ app.querySelectorAll(".card").forEach(c=>c.onclick=()=>open(c.dataset.id,c))}
+function open(id,card){
+ const go=()=>lesson(id);
+ if(!card||matchMedia("(prefers-reduced-motion:reduce)").matches)return go();
+ const r=card.getBoundingClientRect(),f=document.createElement("div");f.id="fly";
+ f.style.cssText=`left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;background:${getComputedStyle(card).getPropertyValue("--c")}`;
+ f.innerHTML=svg(LS.find(l=>l.id==id).ic);document.body.appendChild(f);
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{f.style.cssText+=";left:0;top:0;width:100vw;height:100vh;border-radius:0"}));
+ setTimeout(()=>{go();f.style.opacity=0;setTimeout(()=>f.remove(),350)},520)}
+function lesson(id){const x=LS.find(l=>l.id==id),i=LS.indexOf(x),c=col(x.lvl);stop&&stop();window.scrollTo(0,0);P.last=id;save();
+ const dn=P.done[id],nx=LS[i+1];
+ app.innerHTML=`<div class="lesson" style="--c:${c}"><div class="top"><button class="btn alt sm" id="bk">← All lessons</button><span class="pill">${x.lvl}</span></div>
+ <h1>${x.t}</h1>
+ <div class="box goal"><b>You will be able to:</b> ${x.goal}</div>
+ <div class="two"><div class="box"><h2>Tools and materials</h2><ul>${x.tools.map(t=>`<li>${t}</li>`).join("")}</ul></div>
+ <div class="box"><h2>Stitch diagram</h2><div class="diag"><div class="ic" style="--c:${c}">${svg(x.ic)}</div><p>Chart symbol for <b>${x.ab}</b>. The 3D demo below shows the same motion up close.</p></div></div></div>
+ <div class="box"><h2>Step by step</h2><ol class="steps">${x.steps.map(s=>`<li>${s}</li>`).join("")}</ol></div>
+ <div class="two"><div class="box"><h2>Helpful tips</h2><ul>${x.tips.map(t=>`<li>${t}</li>`).join("")}</ul></div>
+ <div class="box"><h2>Common mistakes</h2>${x.mist.map(m=>`<div class="fix"><b>${m[0]}.</b> Fix: ${m[1]}</div>`).join("")}</div></div>
+ <h2 style="margin:26px 0 4px">Interactive 3D demonstration</h2><p style="margin:0 0 10px;color:var(--mut)">An animated Three.js model, not a recorded video. Drag the scene to turn it.${x.lvl!="Beginner"&&x.lvl!="Easy Projects"?" It shows the core stitch used in this lesson.":""}</p>
+ <div class="demo" id="demo"><div class="stage"><canvas></canvas>
+  <span class="lbl" data-k="hook" style="--c:#f4a66a">Hook</span><span class="lbl" data-k="loop" style="--c:#d9607b">Loop on hook</span><span class="lbl" data-k="yarn" style="--c:#e9788f">Yarn path</span><span class="lbl" data-k="enter" style="--c:#ffc533">Enter here</span></div>
+  <div class="cap"></div><div class="dots">${D[x.demo]().map(()=>"<i></i>").join("")}</div>
+  <div class="ctl"><button class="btn sm pp">▶ Play</button><button class="btn alt sm pv" aria-label="Previous step">◀ Back</button><button class="btn alt sm nx">Show next step</button><button class="btn alt sm rp">↺ Replay</button><label>Speed <select class="sp"><option value=".5">Slow 0.5×</option><option value=".75">0.75×</option><option value="1" selected>Normal 1×</option><option value="1.5">Fast 1.5×</option></select></label></div></div>
+ <div class="box"><h2>Practice task</h2><p>${x.prac}</p><button class="btn" id="mk">${dn?"✓ Learned (tap to undo)":"Mark as learned"}</button>
+ ${nx?`<button class="btn alt" id="nl" style="margin-left:8px">Next: ${nx.t}</button>`:""}</div></div>`;
+ stop=startDemo($("#demo"),x.demo);
+ $("#bk").onclick=home;
+ $("#mk").onclick=e=>{P.done[id]?delete P.done[id]:P.done[id]=1;save();e.target.textContent=P.done[id]?"✓ Learned (tap to undo)":"Mark as learned";if(P.done[id]){const t=document.createElement("div");t.className="toast";t.textContent="Nice work! Lesson learned.";document.body.appendChild(t);setTimeout(()=>t.remove(),2200)}};
+ const n=$("#nl");if(n)n.onclick=()=>lesson(nx.id)}
+home();
+</script></body></html>
